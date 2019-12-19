@@ -72,12 +72,8 @@ class VersionSolver:
 
             i += 1
 
-        logger.info("Version solving took {:.3f} seconds.\n")
-        logger.info(
-            "Tried {} solutions.".format(
-                time.time() - start, self._solution.attempted_solutions
-            )
-        )
+        logger.info("Version solving took {:.3f} seconds.".format(time.time() - start))
+        logger.info("Tried {} solutions.".format(self._solution.attempted_solutions))
 
         return SolverResult(
             self._solution.decisions, self._solution.attempted_solutions
