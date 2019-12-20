@@ -20,6 +20,10 @@ class Union(object):
     def of(cls, *ranges):
         flattened = []
         for constraint in ranges:
+            if isinstance(constraint, list):
+                flattened.extend(constraint)
+                continue
+
             if constraint.is_empty():
                 continue
 
