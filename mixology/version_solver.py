@@ -324,10 +324,13 @@ class VersionSolver:
 
         # Prefer packages with as few remaining versions as possible,
         # so that if a conflict is necessary it's forced quickly.
+        # at a tie, the package with least dependencies is chosen
         def _get_min(term):
-            return len(
-                self._source.versions_for(term.package, term.constraint.constraint)
+            versions = self._source.versions_for(
+                term.package, term.constraint.constraint
             )
+            deps = self._source.dependencies_for(term.package, versions[0])
+            return len(versions), len(deps)
 
         if len(unsatisfied) == 1:
             term = unsatisfied[0]
