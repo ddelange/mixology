@@ -100,6 +100,6 @@ class PackageSource(BasePackageSource):
                 )
                 for range in dependency.constraint.ranges
             ]
-            constraint = Union.of(ranges)
+            constraint = Union.of(*ranges)
 
         return Constraint(dependency.name, constraint)
