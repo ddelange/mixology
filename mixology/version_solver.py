@@ -329,7 +329,7 @@ class VersionSolver:
             versions = self._source.versions_for(
                 term.package, term.constraint.constraint
             )
-            deps = self._source.dependencies_for(term.package, versions[0])
+            deps = self._source.dependencies_for(term.package, versions[0]) if versions else []
             return len(versions), len(deps)
 
         if len(unsatisfied) == 1:
