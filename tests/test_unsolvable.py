@@ -26,9 +26,9 @@ def test_no_version_that_matches_combined_constraints(source):
     source.add("shared", "3.5.0")
 
     error = """\
-Because foo (1.0.0) depends on shared (>=2.0.0 <3.0.0)
- and no versions of shared match >=2.9.0,<3.0.0, foo (1.0.0) requires shared (>=2.0.0,<2.9.0).
-And because bar (1.0.0) depends on shared (>=2.9.0 <4.0.0), bar (1.0.0) is incompatible with foo (1.0.0).
+Because no versions of shared match >=2.9.0,<3.0.0
+ and bar (1.0.0) depends on shared (>=2.9.0 <4.0.0), bar (1.0.0) requires shared (>=3.0.0,<4.0.0).
+And because foo (1.0.0) depends on shared (>=2.0.0 <3.0.0), bar (1.0.0) is incompatible with foo (1.0.0).
 So, because root depends on both foo (1.0.0) and bar (1.0.0), version solving failed."""
 
     check_solver_result(source, error=error)
